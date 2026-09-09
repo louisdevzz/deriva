@@ -64,12 +64,17 @@ function domToReact(node: ChildNode, key: number): ReactNode {
  * parse (colored with KaTeX's stock `errorColor`, matching rehype-katex).
  */
 export function renderTexToReact(value: string, displayMode: boolean): ReactNode {
+  // Strip dollar-sign delimiters that leaked through the micromark tokenizer
+  // when the LLM emits adjacent `$...$` or `$$...$$` with no separating space,
+  // causing the parser to mis-split boundaries and feed raw `$` into TeX.
+  let tex = value.replace(/^\$+/, '').replace(/\$+$/, '')
+  if (tex.length === 0) tex = value
   let html: string
   try {
-    html = katex.renderToString(value, { displayMode, throwOnError: true })
+    html = katex.renderToString(tex, { displayMode, throwOnError: true })
   } catch (error) {
     try {
-      html = katex.renderToString(value, { displayMode, strict: 'ignore', throwOnError: false })
+      html = katex.renderToString(tex, { displayMode, strict: 'ignore', throwOnError: false })
     } catch {
       // KaTeX renders ParseErrors itself under throwOnError: false; only its
       // internal errors reach here, so mirror rehype-katex's manual span.
