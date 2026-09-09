@@ -30,6 +30,14 @@
       "types": "./lib/types/display.d.ts",
       "default": "./lib/types/display.js"
     },
+    "./typert": {
+      "types": "./lib/typert.host.d.ts",
+      "default": "./lib/typert.host.js"
+    },
+    "./remote": {
+      "types": "./lib/typert.remote-client.d.ts",
+      "default": "./lib/typert.remote-client.js"
+    },
     "./src/*": "./src/*",
     "./package.json": "./package.json"
   },

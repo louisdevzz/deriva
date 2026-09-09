@@ -277,6 +277,14 @@ function staticLinkedConfig(id: string, entry: string, outputName = basename(ent
     // browser stack frame back to the TSX (tsc emits the lib/types half).
     sourcemap: true,
     outputOptions: { sourcemapExcludeSources: false },
+    inputOptions: {
+      resolve: {
+        extensionAlias: {
+          '.ts': ['.ts', '.js'],
+          '.tsx': ['.tsx', '.jsx', '.js'],
+        },
+      },
+    },
     plugins: [{
       // Contract 1. `pre` because tsdown's own deps plugin would otherwise
       // resolve and inline every specifier missing from the npm production

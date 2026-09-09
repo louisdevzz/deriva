@@ -16,6 +16,8 @@
     "derive:web": "node --import tsx apps/derive/src/bin.ts web"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.20.0",
     "lightningcss": "^1.33.0",
     "tsdown": "^0.22.2",
     "tsx": "^4.22.4",

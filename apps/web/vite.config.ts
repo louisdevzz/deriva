@@ -147,7 +147,7 @@ export default defineConfig({
   // Relative asset URLs: preview.html mounts the same output under any base
   // directory, and the served index resolves identically from the site root.
   base: './',
-  plugins: [rejectStandaloneServe(), clientDocumentTitle(), react(), emitPreviewPage()],
+  plugins: [rejectStandaloneServe(), clientDocumentTitle(), react(), ...(process.env.DSH_BUILD_PREVIEW ? [emitPreviewPage()] : [])],
   build: {
     // The worker bootstrap holds its page at top-level await; Vite's default
     // `modules` target (es2020-era) rejects that syntax.
@@ -156,10 +156,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: src('./index.html'),
-        // Standalone entry, not an index.html script tag: Vite folds every
-        // module tag of one page into a single synthetic entry, and only a
-        // separate input keeps the shared page chunks bootstrap-free.
-        bootstrap: src('./src/preview.ts'),
+        ...(process.env.DSH_BUILD_PREVIEW ? { bootstrap: src('./src/preview.ts') } : {}),
       },
       output: {
         // The worker-preview surface groups under dist/preview/ (the page
