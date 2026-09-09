@@ -1,5 +1,3 @@
-<a id="readme-top"></a>
-
 <!-- PROJECT SHIELDS -->
 <div align="center">
 
@@ -69,7 +67,6 @@
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -111,16 +108,12 @@ General-purpose LLMs excel at qualitative reasoning but frequently hallucinate i
                     └─────────────────────────┘
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Core Philosophy
 
 1. **LLM is a Planner, Not a Calculator**: The model plans strategy, formulates sub-problems, interprets results, and explains steps. Complex algebra is never performed through unverified mental arithmetic.
 2. **Deterministic Verification Before Acceptance**: Every intermediate lemma and final solution must pass multi-layered verification before being committed.
 3. **Structured State Outside Context Window**: Derivation state is stored in persistent, versioned artifacts (`math-state.json`, `derivation-graph.json`) rather than purely in conversational chat history.
 4. **Local Hardware First**: Designed to run natively on dedicated workstation hardware (e.g., dual NVIDIA RTX 5090) with high-throughput local reasoning models.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### The Derivation Loop
 
@@ -134,8 +127,6 @@ $$\boxed{\text{PLAN} \longrightarrow \text{EXECUTE} \longrightarrow \text{VERIFY
 | **EXECUTE** | Perform step-by-step mathematical transformations, integrations, and substitutions | SymPy / SciPy Tools |
 | **VERIFY** | Validate against ODE residuals, initial/boundary conditions, numerical spot checks, and dimensional consistency | Deterministic Verifier Suite |
 | **COMMIT** | Record step, mathematical formula, justification, and verification certificate to derivation state | Persistent Math State & Artifacts |
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### System Architecture
 
@@ -174,8 +165,6 @@ Deriva is built on a clean three-tier architecture:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Built With
 
 * [![TypeScript][typescript-badge]][typescript-url]
@@ -185,8 +174,6 @@ Deriva is built on a clean three-tier architecture:
 * [![React][react-badge]][react-url]
 * [![Vite][vite-badge]][vite-url]
 * [![pnpm][pnpm-badge]][pnpm-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -229,8 +216,6 @@ Deriva is built on a clean three-tier architecture:
    pnpm derive
    ```
    *Expected output: CLI usage instructions.*
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Python Math Environment (Conda or .venv)
 
@@ -291,8 +276,6 @@ DSH_PERMISSION_MODE=danger-full-access
 DSH_TOOLS_MODE=worker-thread
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -335,8 +318,6 @@ Step 3 — Second integration (apply x(0) = x₀):
   └─────────────────────────────────────────────────┘
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Structured Derivation Artifacts
 
 Upon completing each derivation, Deriva writes a structured report to disk (e.g. `displacement_derivation.md` or `.derive/math-state.json`):
@@ -378,8 +359,6 @@ Upon completing each derivation, Deriva writes a structured report to disk (e.g.
 }
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Verification Pipeline
 
 Deriva's verifier evaluates each result against four distinct criteria:
@@ -391,8 +370,6 @@ Deriva's verifier evaluates each result against four distinct criteria:
 3. **Numerical Spot Checking**: High-resolution numerical integration (Runge-Kutta / Euler with $200\,000+$ steps) compared against the analytical closed-form solution.
 4. **Dimensional Consistency**: Checks that each additive term in the derived expression possesses identical physical dimensions:
    $$[x_0] = [L], \quad [v_0 t] = [L], \quad \left[\frac{F}{2m} t^2\right] = [L]$$
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -414,8 +391,6 @@ Deriva's verifier evaluates each result against four distinct criteria:
   - [ ] Formal proof checking integration (Lean 4 / Isabelle bridge)
   - [ ] Multi-agent peer review: Proposer $\longleftrightarrow$ Critic $\longleftrightarrow$ Verifier
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -433,8 +408,6 @@ This is a **private, proprietary repository**. Internal contributions are govern
    * All pull requests must include verification evidence (CLI derivation run log or unit tests).
    * Request review from the core maintainer.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- LICENSE -->
 ## License
 
@@ -444,17 +417,6 @@ Copyright &copy; 2026. All rights reserved.
 
 Unauthorized copying of this repository, its architecture, or its source files, via any medium, is strictly prohibited. This software is proprietary to the author and authorized organizations.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTACT -->
-## Contact
-
-**Project Lead**: Louis  
-**Project Repository**: `deriva` (Deriva MDA)  
-**Classification**: Proprietary / Internal Research
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
@@ -462,8 +424,6 @@ Unauthorized copying of this repository, its architecture, or its source files, 
 * [Cordis Framework][cordis-url] — Extensible microkernel architecture
 * [SymPy][sympy-url] — Symbolic mathematics in Python
 * [Best-README-Template][best-readme-url] — For the documentation design and structure
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [license-shield]: https://img.shields.io/badge/License-Proprietary-red.svg?style=for-the-badge
