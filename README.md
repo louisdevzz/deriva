@@ -201,7 +201,7 @@ Deriva is built on a clean three-tier architecture:
 
 1. Clone or access the private repository:
    ```sh
-   cd /home/louis/deriva
+   cd deriva
    ```
 2. Install workspace dependencies:
    ```sh
