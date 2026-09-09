@@ -187,8 +187,18 @@ async function runDerivation(ctx: Context, config: Config, io: DeriveIo): Promis
   }
   writeFileSync(join(artifactDir, 'math-state.json'), JSON.stringify(initialState, null, 2))
 
-  const selection = defaultModel.currentSelection()
-  io.stderr.write(`\x1b[32m[deriva]\x1b[0m Model: ${selection.provider}/${selection.model}\n`)
+  let selection = defaultModel.currentSelection()
+  if (!selection.provider) {
+    const providers = ctx.get('llm')?.listProviders() ?? []
+    for (const provider of providers) {
+      const models = await ctx.get('llm')?.listModels(provider.id) ?? []
+      if (models.length > 0) {
+        selection = { provider: provider.id, model: models[0]!.id }
+        break
+      }
+    }
+  }
+  io.stderr.write(`\x1b[32m[deriva]\x1b[0m Model: ${selection.provider || 'none'}/${selection.model || 'none'}\n`)
   io.stderr.write(`\x1b[32m[deriva]\x1b[0m Task: ${config.task}\n\n`)
 
   const { agent } = await agents.create({

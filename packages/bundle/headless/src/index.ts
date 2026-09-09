@@ -176,7 +176,17 @@ async function run(ctx: Context, task: string, io: HeadlessIo): Promise<void> {
   // Early process shutdown can dispose the tree while settlement is pending.
   if (agents === undefined || defaultModel === undefined || sessions === undefined) return
 
-  const selection = defaultModel.currentSelection()
+  let selection = defaultModel.currentSelection()
+  if (!selection.provider) {
+    const providers = ctx.get('llm')?.listProviders() ?? []
+    for (const provider of providers) {
+      const models = await ctx.get('llm')?.listModels(provider.id) ?? []
+      if (models.length > 0) {
+        selection = { provider: provider.id, model: models[0]!.id }
+        break
+      }
+    }
+  }
   // This bundle composes no preset roster, so the model-facing rows sit in the
   // host plane and the agent reads them from the global layer. A deployment
   // that DOES configure one has to join it here first

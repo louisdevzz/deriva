@@ -75,8 +75,8 @@
     - id: agent-default-model
       name: '@deepseek-ai/dsh-agent-default-model'
       config:
-        provider: deepseek-official
-        model: deepseek-v4-flash
+        provider: ''
+        model: ''
 
     - id: jobs
       name: '@deepseek-ai/dsh-jobs-local'
@@ -485,3 +485,4 @@
     # choice.
     - id: llm-deepseek
       name: '@deepseek-ai/dsh-llm-deepseek'
+      disabled: true

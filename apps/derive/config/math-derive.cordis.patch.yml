@@ -32,13 +32,15 @@
 
     personaSuffix: Your working directory is {{cwd}}.
 
-# Override default model — use local Qwen or whatever is configured
-# Users can override via $DSH_HOME/settings.yaml
+# No default model — let user or settings choose
 - id: agent-default-model
   config:
-    provider: deepseek-official
-    model: deepseek-reasoner
+    provider: ''
+    model: ''
 
+# Disable native DeepSeek adapter
+- id: llm-deepseek
+  disabled: true
 # Tool and execution configurations
 - id: tools
   config:

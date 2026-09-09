@@ -32,8 +32,8 @@ export interface AgentDefaultModelSettings {
 
 /** Schema of the default Agent model settings section. */
 export const AGENT_DEFAULT_MODEL_SETTINGS_SCHEMA: z<AgentDefaultModelSettings> = z.object({
-  provider: z.string().required(),
-  model: z.string().required(),
+  provider: z.string().default(''),
+  model: z.string().default(''),
   reasoningEffort: z.string(),
 })
 
@@ -48,8 +48,8 @@ export interface Config {
 /** Project stored settings onto the Agent-facing selection type. */
 function selection(settings: AgentDefaultModelSettings): ModelSelection {
   return {
-    provider: settings.provider,
-    model: settings.model,
+    provider: settings.provider ?? '',
+    model: settings.model ?? '',
     ...settings.reasoningEffort === undefined
       ? {}
       : { reasoningEffort: ReasoningEffortId(settings.reasoningEffort) },
@@ -63,8 +63,8 @@ function selection(settings: AgentDefaultModelSettings): ModelSelection {
  */
 export class AgentDefaultModelConfig extends Service {
   static Config: z<Config> = z.object({
-    provider: z.string().required(),
-    model: z.string().required(),
+    provider: z.string().default(''),
+    model: z.string().default(''),
   })
 
   private source: () => AgentDefaultModelSettings
