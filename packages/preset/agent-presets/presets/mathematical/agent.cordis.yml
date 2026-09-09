@@ -1,0 +1,110 @@
+# The `mathematical` agent preset: Mathematical Derivation Agent (MDA).
+# Solves mathematical, physical, and scientific problems with mathematical rigor
+# through the PLAN → EXECUTE → VERIFY → COMMIT loop.
+
+# ── identity ────────────────────────────────────────────────────────────────
+
+- id: persona
+  name: '@deepseek-ai/dsh-persona'
+  config:
+    suffix: Your working directory is {{cwd}}.
+    prefix: >-
+      You are a Mathematical Derivation Agent (MDA). Your role is to solve
+      mathematical, physical, and scientific problems through rigorous step-by-step derivation.
+
+      Core loop: PLAN → EXECUTE → VERIFY → COMMIT.
+
+      - PLAN: Understand the problem, identify knowns/unknowns/assumptions/domains,
+        and select a derivation strategy.
+      - EXECUTE: Apply mathematical transformations step by step. Use tools
+        (SymPy, SciPy in Python) for symbolic and analytical computation — never do complex algebra in your head.
+      - VERIFY: Check each result — symbolic equivalence, ODE residuals (identically zero),
+        numerical spot checks (e.g. RK45/Euler), dimensional consistency, and boundary cases.
+      - COMMIT: Record the verified result into the derivation state and
+        proceed to the next subproblem.
+
+      You maintain a structured derivation state:
+        known       — established facts and given quantities
+        derived     — results obtained so far (with verification status)
+        goals       — what remains to be shown/found
+        assumptions — stated assumptions and their valid domains
+
+      When using tools, be precise with mathematical expressions.
+      Use LaTeX notation in explanations. Show your reasoning clearly.
+
+- id: agent-instructions
+  name: '@deepseek-ai/dsh-agent-instructions'
+  config:
+    maxBytes: 65536
+
+# ── computation & shell ──────────────────────────────────────────────────────
+
+- id: tool-bash
+  name: '@deepseek-ai/dsh-tool-bash'
+  disabled: !!js process.platform === 'win32'
+
+- id: tool-pwsh
+  name: '@deepseek-ai/dsh-tool-pwsh'
+  disabled: !!js process.platform !== 'win32'
+
+# ── filesystem ──────────────────────────────────────────────────────────────
+
+- id: tool-fs
+  name: '@deepseek-ai/dsh-tool-fs'
+
+- id: tool-fs-search
+  name: '@deepseek-ai/dsh-tool-fs-search'
+  config:
+    sampleOverCapGlobResults: false
+
+# ── goals & planning ────────────────────────────────────────────────────────
+
+- id: command-goal
+  name: '@deepseek-ai/dsh-command-goal'
+
+- id: tool-goal
+  name: '@deepseek-ai/dsh-tool-goal'
+
+- id: planning
+  name: cordis:group
+  group: true
+  isolate:
+    planMode: true
+  config:
+    - id: plan-mode
+      name: '@deepseek-ai/dsh-plan-mode'
+      config:
+        section: |
+              You are in derivation planning mode. Identify the problem scope, formalize mathematical assumptions and known axioms, and construct the derivation roadmap before computing.
+
+# ── tasks & state ───────────────────────────────────────────────────────────
+
+- id: tool-todo
+  name: '@deepseek-ai/dsh-tool-todo'
+  config:
+    allowParallelInProgress: false
+
+- id: present
+  name: '@deepseek-ai/dsh-tool-present'
+
+# ── compaction ──────────────────────────────────────────────────────────────
+
+- id: compaction
+  name: cordis:group
+  group: true
+  isolate:
+    compaction: true
+    toolResultPruner: true
+  config:
+    - id: compaction-basic
+      name: '@deepseek-ai/dsh-compaction-basic'
+
+    - id: command-compact
+      name: '@deepseek-ai/dsh-command-compact'
+
+    - id: tool-result-pruner
+      name: '@deepseek-ai/dsh-compaction-tool-result-pruner'
+      config:
+        thresholdChars: 8192
+        headChars: 4096
+        tailChars: 1024
