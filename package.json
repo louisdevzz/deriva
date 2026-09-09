@@ -12,9 +12,11 @@
   "scripts": {
     "build": "tsdown --parallel",
     "derive": "node --import tsx apps/derive/src/bin.ts",
-    "derive:headless": "node --import tsx apps/derive/src/bin.ts --profile headless"
+    "derive:headless": "node --import tsx apps/derive/src/bin.ts --profile headless",
+    "derive:web": "node --import tsx apps/derive/src/bin.ts web"
   },
   "devDependencies": {
+    "lightningcss": "^1.33.0",
     "tsdown": "^0.22.2",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",

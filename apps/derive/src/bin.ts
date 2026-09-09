@@ -30,32 +30,38 @@ const APP_DIR = dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = join(APP_DIR, '..', '..', '..')
 
 /** Parse minimal CLI args. */
-function parseArgs(argv: string[]): { task?: string; profile: string } {
+function parseArgs(argv: string[]): { task?: string; profile: string; rest: string[] } {
   let profile = 'headless'
   let task: string | undefined
   const rest: string[] = []
+  let argsList = [...argv]
 
-  for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i]
-    if (arg === '--profile' && i + 1 < argv.length) {
-      profile = argv[++i]!
+  if (argsList[0] === 'web') {
+    profile = 'web'
+    argsList = argsList.slice(1)
+  }
+
+  for (let i = 0; i < argsList.length; i++) {
+    const arg = argsList[i]!
+    if (arg === '--profile' && i + 1 < argsList.length) {
+      profile = argsList[++i]!
     } else {
-      rest.push(arg!)
+      rest.push(arg)
     }
   }
 
-  if (rest.length > 0) {
+  if (profile === 'headless' && rest.length > 0) {
     task = rest.join(' ')
   }
 
-  return { task, profile }
+  return { task, profile, rest }
 }
 
 /**
  * Resolve bundle patch layers:
  *   1. dsh-base (core plugins)
- *   2. headless patch (one-shot runner, if headless mode)
- *   3. math-derive patch (customizations win over headless defaults)
+ *   2. headless or web-app patch depending on profile
+ *   3. math-derive patch (customizations win over defaults)
  */
 function composePatchStack(profile: string): PatchOptions[] {
   const basePatch = join(REPO_ROOT, 'packages/bundle/base/cordis.patch.yml')
@@ -68,6 +74,9 @@ function composePatchStack(profile: string): PatchOptions[] {
   if (profile === 'headless') {
     const headlessPatch = join(REPO_ROOT, 'packages/bundle/headless/cordis.patch.yml')
     patches.push(...loadOverlayPatches(NAME, headlessPatch))
+  } else if (profile === 'web') {
+    const webPatch = join(REPO_ROOT, 'packages/bundle/web-app/cordis.patch.yml')
+    patches.push(...loadOverlayPatches(NAME, webPatch))
   }
 
   // math-derive patch applies last so our system-prompt and model choices win
@@ -125,7 +134,7 @@ async function main(): Promise<void> {
     app = hostCtx
     hostCtx.provide(DSH_LAUNCH_ENVIRONMENT_KEY, environment)
     provideCmdline(hostCtx, {
-      args: args.task ? [args.task] : [],
+      args: args.profile === 'web' ? args.rest : (args.task ? [args.task] : []),
       exit: (code: number) => void shutdown.shutdown(code),
       ready: { ready: false, commit() { this.ready = true } },
     })
