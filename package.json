@@ -10,7 +10,7 @@
     "node": "^22.19.0 || >=24.0.0"
   },
   "scripts": {
-    "build": "tsc -b tsconfig.build.json || true && tsdown --parallel",
+    "build": "tsc -b tsconfig.build.json || true && tsdown --parallel && pnpm --filter @deepseek-ai/dsh-web-frontend run build",
     "derive": "node --import tsx apps/derive/src/bin.ts",
     "derive:headless": "node --import tsx apps/derive/src/bin.ts --profile headless",
     "derive:web": "node --import tsx apps/derive/src/bin.ts web"
