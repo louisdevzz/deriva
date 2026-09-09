@@ -233,7 +233,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 
 # 3. Install mathematical computation and verification packages
-pip install sympy scipy numpy
+pip install -r requirements.txt
 ```
 
 > **Note**: `.venv/` is tracked by `.gitignore` and will never be committed to source control.
@@ -249,9 +249,9 @@ conda create -n deriva python=3.11 -y
 # 2. Activate the environment
 conda activate deriva
 
-# 3. Install mathematical packages
-conda install sympy scipy numpy -y
-# or via pip: pip install sympy scipy numpy
+# 3. Install mathematical computation and verification packages
+pip install -r requirements.txt
+# or via conda: conda install --file requirements.txt
 ```
 
 Deriva resolves the Python execution runtime using the following precedence:

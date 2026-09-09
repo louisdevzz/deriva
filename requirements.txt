@@ -1,0 +1,10 @@
+# Deriva (MDA) — Mathematical Derivation Agent
+# Python dependencies for symbolic computation, numeric checks, and ODE solvers.
+
+# Core Computer Algebra System (CAS)
+sympy>=1.13.0
+mpmath>=1.3.0
+
+# Numerical computation, arrays, and ODE numerical spot-checking
+numpy>=2.0.0
+scipy>=1.14.0
