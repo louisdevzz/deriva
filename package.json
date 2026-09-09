@@ -1,0 +1,23 @@
+{
+  "name": "deriva",
+  "version": "0.1.0",
+  "description": "Deriva — Mathematical Derivation Agent (MDA)",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "scripts": {
+    "build": "tsdown --parallel",
+    "derive": "node --import tsx apps/derive/src/bin.ts",
+    "derive:headless": "node --import tsx apps/derive/src/bin.ts --profile headless"
+  },
+  "devDependencies": {
+    "tsdown": "^0.22.2",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  }
+}

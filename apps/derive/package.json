@@ -1,0 +1,43 @@
+{
+  "name": "@deriva/cli",
+  "description": "Deriva — Mathematical Derivation Agent (MDA) CLI",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "deriva": "src/bin.ts"
+  },
+  "dependencies": {
+    "@deepseek-ai/cordis": "workspace:^",
+    "@deepseek-ai/cordis-plugin-hmr": "workspace:^",
+    "@deepseek-ai/cordis-plugin-include": "workspace:^",
+    "@deepseek-ai/cordis-plugin-loader": "workspace:^",
+    "@deepseek-ai/cordis-plugin-timer": "workspace:^",
+    "@deepseek-ai/dsh-app-boot": "workspace:^",
+    "@deepseek-ai/dsh-base": "workspace:^",
+    "@deepseek-ai/dsh-cmdline": "workspace:^",
+    "@deepseek-ai/dsh-headless": "workspace:^",
+    "@deepseek-ai/dsh-home-paths": "workspace:^",
+    "@deepseek-ai/dsh-launch-environment": "workspace:^",
+    "@deepseek-ai/dsh-agent": "workspace:^",
+    "@deepseek-ai/dsh-agent-default-model": "workspace:^",
+    "@deepseek-ai/dsh-llm": "workspace:^",
+    "@deepseek-ai/dsh-llm-deepseek": "workspace:^",
+    "@deepseek-ai/dsh-llm-pi-ai": "workspace:^",
+    "@deepseek-ai/dsh-session": "workspace:^",
+    "@deepseek-ai/dsh-system-prompt": "workspace:^",
+    "@deepseek-ai/dsh-tools": "workspace:^",
+    "@deepseek-ai/dsh-agent-loop": "workspace:^",
+    "@deepseek-ai/dsh-http-proxy": "workspace:^",
+    "@deepseek-ai/schemastery": "workspace:^",
+    "@deepseek-ai/dsh-brand": "workspace:^",
+    "@deepseek-ai/dsh-util-values": "workspace:^",
+    "@deepseek-ai/dsh-code-runtime-worker-thread": "workspace:^",
+    "commander": "^15.0.0",
+    "js-yaml": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "tsx": "^4.22.4"
+  }
+}

@@ -1,0 +1,55 @@
+# Mathematical Derivation Agent — Cordis patch layer.
+# Applied OVER dsh-base. Customizes system prompt, default model, and
+# will later mount math-specific tools (SymPy, verifier, etc).
+
+# Override the system prompt for mathematical derivation
+- id: system-prompt
+  config:
+    personaPrefix: >-
+      You are a Mathematical Derivation Agent. Your role is to solve
+      mathematical problems through rigorous step-by-step derivation.
+
+      Core loop: PLAN → EXECUTE → VERIFY → COMMIT.
+
+      - PLAN: Understand the problem, identify knowns/unknowns/assumptions,
+        choose a derivation strategy.
+      - EXECUTE: Apply mathematical operations step by step. Use tools
+        (SymPy, solve, integrate, differentiate, simplify) for symbolic
+        computation — never do complex algebra in your head.
+      - VERIFY: Check each result — symbolic equivalence, numerical spot
+        check, dimensional analysis, boundary/special cases.
+      - COMMIT: Record the verified result into the derivation state and
+        proceed to the next subproblem.
+
+      You maintain a structured derivation state:
+        known     — established facts and given quantities
+        derived   — results obtained so far (with verification status)
+        goals     — what remains to be shown/found
+        assumptions — stated assumptions and their domains
+
+      When using tools, be precise with mathematical expressions.
+      Use LaTeX notation in explanations. Show your reasoning.
+
+    personaSuffix: Your working directory is {{cwd}}.
+
+# Override default model — use local Qwen or whatever is configured
+# Users can override via $DSH_HOME/settings.yaml
+- id: agent-default-model
+  config:
+    provider: deepseek-official
+    model: deepseek-reasoner
+
+# Tool and execution configurations
+- id: tools
+  config:
+    mode: !!js process.env.DSH_TOOLS_MODE
+
+# When sandboxing is not supported by the kernel/container, allow direct tool execution
+- id: sandbox-policy
+  config:
+    mode: !!js process.env.DSH_PERMISSION_MODE ?? 'danger-full-access'
+
+- id: approval
+  config:
+    policy: never
+

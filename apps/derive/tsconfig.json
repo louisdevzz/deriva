@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types"
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    { "path": "../../vendor/cordis" },
+    { "path": "../../vendor/loader" },
+    { "path": "../../vendor/include" },
+    { "path": "../../packages/boot/app-boot" },
+    { "path": "../../packages/boot/cmdline" },
+    { "path": "../../packages/bundle/base" },
+    { "path": "../../packages/bundle/headless" },
+    { "path": "../../packages/core/agent" },
+    { "path": "../../packages/core/agent-default-model" },
+    { "path": "../../packages/core/session" },
+    { "path": "../../packages/core/system-prompt" },
+    { "path": "../../packages/core/tools" },
+    { "path": "../../packages/llm/llm" },
+    { "path": "../../packages/util/brand" },
+    { "path": "../../packages/util/values" },
+    { "path": "../../packages/util/launch-environment" }
+  ]
+}
