@@ -12,22 +12,22 @@
       "path": "./native/system/packages/entry"
     },
     {
-      "path": "./packages/api/gateway/tsconfig.client.json"
+      "path": "./packages/api/gateway/tsconfig.host.json"
     },
     {
-      "path": "./packages/api/remotes/tsconfig.client.json"
+      "path": "./packages/api/remotes/tsconfig.host.json"
     },
     {
-      "path": "./packages/api/session-controller/tsconfig.client.json"
+      "path": "./packages/api/session-controller/tsconfig.host.json"
     },
     {
       "path": "./packages/api/settings-controller"
     },
     {
-      "path": "./packages/api/workspace-controller/tsconfig.client.json"
+      "path": "./packages/api/workspace-controller/tsconfig.host.json"
     },
     {
-      "path": "./packages/api/workspace-files/tsconfig.client.json"
+      "path": "./packages/api/workspace-files/tsconfig.host.json"
     },
     {
       "path": "./packages/attachment/attachment"
@@ -54,7 +54,7 @@
       "path": "./packages/client/connection/tsconfig.client.json"
     },
     {
-      "path": "./packages/client/file-upload/tsconfig.client.json"
+      "path": "./packages/client/file-upload/tsconfig.host.json"
     },
     {
       "path": "./packages/client/hmr"
@@ -93,7 +93,7 @@
       "path": "./packages/client/ui-conversation"
     },
     {
-      "path": "./packages/client/ui-deliverables/tsconfig.client.json"
+      "path": "./packages/client/ui-deliverables/tsconfig.host.json"
     },
     {
       "path": "./packages/client/ui-directory-picker-browse"
@@ -267,12 +267,6 @@
       "path": "./packages/credentials/credentials-local"
     },
     {
-      "path": "./packages/experimental/client-ui-agent-team"
-    },
-    {
-      "path": "./packages/experimental/inspector/tsconfig.client.json"
-    },
-    {
       "path": "./packages/extensions/cordis-client-runner"
     },
     {
@@ -429,7 +423,7 @@
       "path": "./packages/schedule/schedule"
     },
     {
-      "path": "./packages/session-query/session-log-export/tsconfig.client.json"
+      "path": "./packages/session-query/session-log-export/tsconfig.host.json"
     },
     {
       "path": "./packages/session-query/session-query"
@@ -715,30 +709,6 @@
     },
     {
       "path": "./vendor/timer"
-    },
-    {
-      "path": "./packages/client/file-upload/tsconfig.host.json"
-    },
-    {
-      "path": "./packages/client/ui-deliverables/tsconfig.host.json"
-    },
-    {
-      "path": "./packages/api/gateway/tsconfig.host.json"
-    },
-    {
-      "path": "./packages/api/remotes/tsconfig.host.json"
-    },
-    {
-      "path": "./packages/api/session-controller/tsconfig.host.json"
-    },
-    {
-      "path": "./packages/api/workspace-controller/tsconfig.host.json"
-    },
-    {
-      "path": "./packages/api/workspace-files/tsconfig.host.json"
-    },
-    {
-      "path": "./packages/session-query/session-log-export/tsconfig.host.json"
     }
   ]
 }

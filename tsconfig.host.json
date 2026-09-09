@@ -127,6 +127,9 @@
   ],
   "references": [
     {
+      "path": "./packages/client/ui-deliverables/tsconfig.host.json"
+    },
+    {
       "path": "./vendor/cosmokit"
     },
     {
@@ -205,6 +208,9 @@
       "path": "./packages/attachment/attachment-local"
     },
     {
+      "path": "./packages/client/file-upload/tsconfig.host.json"
+    },
+    {
       "path": "./packages/llm/llm"
     },
     {
@@ -226,7 +232,22 @@
       "path": "./packages/typert/registry"
     },
     {
+      "path": "./packages/api/gateway/tsconfig.host.json"
+    },
+    {
+      "path": "./packages/api/remotes/tsconfig.host.json"
+    },
+    {
+      "path": "./packages/api/session-controller/tsconfig.host.json"
+    },
+    {
+      "path": "./packages/api/workspace-files/tsconfig.host.json"
+    },
+    {
       "path": "./packages/api/settings-controller"
+    },
+    {
+      "path": "./packages/api/workspace-controller/tsconfig.host.json"
     },
     {
       "path": "./packages/typert/loader"
@@ -272,6 +293,9 @@
     },
     {
       "path": "./packages/session-query/session-query-sqlite"
+    },
+    {
+      "path": "./packages/session-query/session-log-export/tsconfig.host.json"
     },
     {
       "path": "./packages/settings/settings"
