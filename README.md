@@ -54,6 +54,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#python-math-environment-conda-or-venv">Python Math Environment (Conda or .venv)</a></li>
         <li><a href="#environment-configuration">Environment Configuration</a></li>
       </ul>
     </li>
@@ -230,6 +231,48 @@ Deriva is built on a clean three-tier architecture:
    *Expected output: CLI usage instructions.*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Python Math Environment (Conda or .venv)
+
+Deriva delegates symbolic algebra, ODE solving, and numeric checks to the Python scientific stack (`sympy`, `scipy`, `numpy`). You can set up your Python environment using either a local **`.venv`** or **Conda**, depending on your preference:
+
+#### Option A: Local `.venv` (Recommended for lightweight / isolated setup)
+
+Create and manage an isolated virtual environment directly inside the project root:
+
+```sh
+# 1. Create virtual environment inside the repository
+python3 -m venv .venv
+
+# 2. Activate the virtual environment
+source .venv/bin/activate
+
+# 3. Install mathematical computation and verification packages
+pip install sympy scipy numpy
+```
+
+> **Note**: `.venv/` is tracked by `.gitignore` and will never be committed to source control.
+
+#### Option B: Conda / Mamba (Recommended for GPU / scientific workstations)
+
+If your workstation uses Anaconda, Miniconda, or Mamba:
+
+```sh
+# 1. Create a dedicated Conda environment
+conda create -n deriva python=3.11 -y
+
+# 2. Activate the environment
+conda activate deriva
+
+# 3. Install mathematical packages
+conda install sympy scipy numpy -y
+# or via pip: pip install sympy scipy numpy
+```
+
+Deriva resolves the Python execution runtime using the following precedence:
+1. Active virtual environment (`$VIRTUAL_ENV` or `$CONDA_PREFIX`)
+2. Project-local `.venv` directory (`./.venv/bin/python`)
+3. System-level Python (`python3`)
 
 ### Environment Configuration
 

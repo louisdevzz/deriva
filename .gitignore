@@ -4,3 +4,7 @@ lib/
 .runtime/
 dist/
 .sessions/
+.venv/
+*venv*/
+__pycache__/
+*.pyc
