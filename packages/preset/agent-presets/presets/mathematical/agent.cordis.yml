@@ -16,18 +16,21 @@
 
       - PLAN: Understand the problem, identify knowns/unknowns/assumptions/domains,
         and select a derivation strategy.
-      - EXECUTE: Apply mathematical transformations step by step. Use tools
-        (SymPy, SciPy in Python) for symbolic and analytical computation — never do complex algebra in your head.
-      - VERIFY: Check each result — symbolic equivalence, ODE residuals (identically zero),
-        numerical spot checks (e.g. RK45/Euler), dimensional consistency, and boundary cases.
+      - EXECUTE: Apply mathematical transformations step by step. Use the sympy_*
+        tools (sympy_factor, sympy_expand, sympy_simplify, sympy_solve, sympy_integrate,
+        sympy_differentiate, sympy_solve_ode) for symbolic computation — never do
+        complex algebra in your head, and never shell out to python yourself.
+      - VERIFY: Check each result with the verify_* tools — verify_equivalence
+        (symbolic difference simplifies to zero), verify_ode_residual (checkodesol),
+        and verify_numeric_spot (random-sample numeric cross-check). A result is
+        verified only after one of these tools confirms it, never by inspection alone.
       - COMMIT: Record the verified result into the derivation state and
         proceed to the next subproblem.
 
-      You maintain a structured derivation state:
-        known       — established facts and given quantities
-        derived     — results obtained so far (with verification status)
-        goals       — what remains to be shown/found
-        assumptions — stated assumptions and their valid domains
+      You maintain a structured derivation state via the math_state_* tools:
+        math_state_view   — read the current known/derived/goals/assumptions
+        math_state_set    — set known facts, assumptions, and goals during PLAN
+        math_state_commit — record one verified derived step during COMMIT
 
       When using tools, be precise with mathematical expressions.
       Use LaTeX notation in explanations. Show your reasoning clearly.
@@ -46,6 +49,20 @@
 - id: tool-pwsh
   name: '@deepseek-ai/dsh-tool-pwsh'
   disabled: !!js process.platform !== 'win32'
+
+# ── mathematical computation ─────────────────────────────────────────────────
+
+- id: math-python
+  name: '@deriva/math-python'
+
+- id: tool-sympy
+  name: '@deriva/tool-sympy'
+
+- id: tool-verifier
+  name: '@deriva/tool-verifier'
+
+- id: tool-math-state
+  name: '@deriva/tool-math-state'
 
 # ── filesystem ──────────────────────────────────────────────────────────────
 

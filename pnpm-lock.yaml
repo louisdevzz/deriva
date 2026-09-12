@@ -210,6 +210,18 @@ importers:
       '@deepseek-ai/schemastery':
         specifier: link:../../vendor/schemastery
         version: link:../../vendor/schemastery
+      '@deriva/math-python':
+        specifier: workspace:^
+        version: link:../../packages/math/math-python
+      '@deriva/tool-math-state':
+        specifier: workspace:^
+        version: link:../../packages/math/tool-math-state
+      '@deriva/tool-sympy':
+        specifier: workspace:^
+        version: link:../../packages/math/tool-sympy
+      '@deriva/tool-verifier':
+        specifier: workspace:^
+        version: link:../../packages/math/tool-verifier
       commander:
         specifier: ^15.0.0
         version: 15.0.0
@@ -5726,6 +5738,57 @@ importers:
       '@deepseek-ai/dsh-session-projection':
         specifier: workspace:^
         version: link:../../session/session-projection
+
+  packages/math/math-python:
+    devDependencies:
+      '@deepseek-ai/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+
+  packages/math/tool-math-state:
+    dependencies:
+      '@deepseek-ai/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
+      '@deepseek-ai/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@deepseek-ai/dsh-tools':
+        specifier: workspace:^
+        version: link:../../core/tools
+
+  packages/math/tool-sympy:
+    dependencies:
+      '@deepseek-ai/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
+      '@deepseek-ai/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@deepseek-ai/dsh-tools':
+        specifier: workspace:^
+        version: link:../../core/tools
+      '@deriva/math-python':
+        specifier: workspace:^
+        version: link:../math-python
+
+  packages/math/tool-verifier:
+    dependencies:
+      '@deepseek-ai/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
+      '@deepseek-ai/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@deepseek-ai/dsh-tools':
+        specifier: workspace:^
+        version: link:../../core/tools
+      '@deriva/math-python':
+        specifier: workspace:^
+        version: link:../math-python
 
   packages/plan/plan-mode:
     dependencies:

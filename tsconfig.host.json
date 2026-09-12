@@ -671,6 +671,18 @@
     },
     {
       "path": "./packages/host/webserver"
+    },
+    {
+      "path": "./packages/math/math-python"
+    },
+    {
+      "path": "./packages/math/tool-sympy"
+    },
+    {
+      "path": "./packages/math/tool-verifier"
+    },
+    {
+      "path": "./packages/math/tool-math-state"
     }
   ]
 }
